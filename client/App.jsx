@@ -14,15 +14,13 @@ export default class App extends Component {
   state ={
     userAccount:'',
     allDucks:'',
+
   }
   componentDidMount() {
     wallet.init().then(data => {
       console.log(data);
-
-      console.log(wallet.getUserAccount());
-
-      this.setState({userAccount:wallet.getUserAccount()});
-      // wallet.getMyDuck().then(res=> console.log(res));
+this.setState({allDucks:data.ducks});
+this.setState({userAccount:wallet.getUserAccount()});
     });
   }
 
@@ -36,7 +34,7 @@ export default class App extends Component {
             <Header />
             <Main>
 
-              <Route exact path={'/'} component={Ledger} />
+            <Route exact path={'/'} component={Ledger}  />
               <Switch>
                 <Route path={'/duck/buy'} component={Create} />
 

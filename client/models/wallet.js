@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-const abi = require('./abi_ducks_0.3.json');
+const abi = require('./abi.json');
 
 const contractAddress = '0xa2eb3b5a0c63012040137d6ad5dd16b5ed234e2b';
 const SUCCESS_STATUS = 'success';
@@ -14,7 +14,8 @@ let localWeb3,
   status,
 allDucks,
 myDuck,
-userDucks;
+userDucks,
+ducks;
 
 export default {
   init: function () {
@@ -75,14 +76,26 @@ export default {
       return this.getData();
     }
      else {
-       return this.getData();
+      allert("Установите мультимаск");
      }
   },
   getData: function () {
     return Promise.all([
       this.getMyDuck(),
         this.getAllDucks()
-    ]);
+    ]).then(() => {
+      // console.log('ducks', allDucks);
+      return Promise.all(
+        allDucks.split(',').map(id => this.getDuckByid(id))
+      )
+    }).then(_ducks => {
+      ducks = _ducks;
+
+      return {
+        ducks,
+        myDuck
+      }
+    })
       
   },
   getAllDucks: function () {
@@ -92,18 +105,23 @@ export default {
       return result;
     })
   },
-  getDuckByid: function () {
-    return contractInstance.methods.getContractById(userAccount).call().then(result => {
+  getDuckByid: function (id) {
+    return contractInstance.methods.getContractById(id).call().then(result => {
       userDucks= result;
       return result;
     })
   },
-  // buyDucks: function () {
-  //   return contractInstance.methods.buyContract(,userAccount).call().then(result => {
-  //     userDucks= result;
-  //     return result;
-  //   })
-  // },
+  buyDucks: function (amount) {
+    return new Promise((res, rej) => {
+      contractInstance.methods.buyContract()
+        .send({
+          from: userAccount,
+          value: localWeb3.utils.toWei(amount.toString(), 'ether')
+        })
+        .on("receipt", receipt => res(receipt))
+        .on("error", error => rej(error));
+    })
+  },
  
   getMyDuck:function(){
     return contractInstance.methods.getMyTokens().call().then(result => {
@@ -133,5 +151,5 @@ export default {
     return localWeb3.eth.getBlock(id);
   },
  
-
+  
 }

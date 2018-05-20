@@ -9,22 +9,27 @@ import wallet from '../../models/wallet';
 
 export default class Oracule extends Component {
   state = {
-    userAccount:''
+    amount:''
   };
-  componentDidMount() {
-     
-
-  }
  
+  handleInput = e => {
+    this.setState({[e.target.name]: e.target.value})
+  }
 
+  onSubmit = () => {
+    const { amount } = this.state;
+
+    wallet.buyDucks(amount);
+  }
 
   render() {
-  
+ 
 
     return (
       <Content>
         <Title>Buy duck</Title>
-          <Heading>Your address:{this.state.userAccount} </Heading>
+          <Heading>Amount</Heading>
+          <Input name="amount" value={this.state.amount} onChange={this.handleInput}/>
         <div>
           <Btn title={'Buy duck'} onClick={this.onSubmit} />
         </div>
