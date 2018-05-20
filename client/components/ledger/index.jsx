@@ -29,13 +29,7 @@ export default class Marketplace extends Component {
 
   }
  
-  // componentDidMount() {
-  //   axios.get(`/api/oracle`).then(res => {
-  //     let { oracles } = res.data;
-
-  //     this.setState({ oracles });
-  //   });
-  // }
+  
    
 
   
@@ -67,12 +61,12 @@ export default class Marketplace extends Component {
         <Plate style={ { margin:' 60 px'} }>
         <StyleLink
           key={idx}
-          to={`/patent/${item.id}`}
+          to={`/duck/${item.id}`}
         >
           <Item delay={idx}>
-            <PatentNumber>
+            <DuckNumber>
               Ducks №{item.id}
-            </PatentNumber>
+            </DuckNumber>
             <SmallTitle>
               Address:
               </SmallTitle>
@@ -165,7 +159,7 @@ const Title = styled.h1`
   font-size: 4rem;
 `;
 
-const PatentNumber = styled.h4`
+const DuckNumber = styled.h4`
   margin-top: 10px;
   text-align: center;
   font-size: 1.6rem;

@@ -19,11 +19,11 @@ export default class Header extends Component {
             </Left>
             <Right>
               <StyleLink
-                to={'/patent/new'}
+                to={'/duck/buy'}
               >
                 <AddOracle>
                   <HoverIcon name="plus-circle" size="2x" />
-                  <Signing>Register user</Signing>
+                  <Signing>Buy Duck</Signing>
                 </AddOracle>
               </StyleLink>
             </Right>

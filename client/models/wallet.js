@@ -1,7 +1,7 @@
 import Web3 from 'web3';
-const abi = require('./abi_ducks_0.json');
+const abi = require('./abi_ducks_0.3.json');
 
-const contractAddress = '0x8f9a7cf07a3ccff0a954ec92cbc2f61059f7d5ed';
+const contractAddress = '0xa2eb3b5a0c63012040137d6ad5dd16b5ed234e2b';
 const SUCCESS_STATUS = 'success';
 const LOGIN_STATUS = 'login';
 const MISS_STATUS = 'miss';
@@ -11,8 +11,10 @@ const BAD_NETWORK_STATUS = 'bad_newtwork';
 let localWeb3,
   contractInstance,
   userAccount,
-  status;
-
+  status,
+allDucks,
+myDuck,
+userDucks;
 
 export default {
   init: function () {
@@ -36,13 +38,13 @@ export default {
             res();
           })
           .catch(() => {
-            localWeb3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io'));
+            localWeb3 = new Web3(new Web3.providers.HttpProvider('https://rinkeby.infura.io'));
             status = BAD_NETWORK_STATUS;
 
             res();
           });
       } else {
-        localWeb3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io'));
+        localWeb3 = new Web3(new Web3.providers.HttpProvider('https://rinkeby.infura.io'));
         status = MISS_STATUS;
 
         res();
@@ -66,25 +68,54 @@ export default {
 
   updateAccount: function () {
 
-    if (status == LOGIN_STATUS && web3.eth.defaultAccount !== userAccount) {
+    if (web3.eth.defaultAccount !== userAccount) {
 
       userAccount = web3.eth.defaultAccount;
-      status = SUCCESS_STATUS;
-
-      //   return this.getData();
+      
+      return this.getData();
     }
-    // else {
-    //   return this.getData();
-    // }
+     else {
+       return this.getData();
+     }
   },
-
+  getData: function () {
+    return Promise.all([
+      this.getMyDuck(),
+        this.getAllDucks()
+    ]);
+      
+  },
+  getAllDucks: function () {
+    return contractInstance.methods.getActiveContracts().call().then(result => {
+      console.log('getActiveContracts', result);
+      allDucks = result;
+      return result;
+    })
+  },
+  getDuckByid: function () {
+    return contractInstance.methods.getContractById(userAccount).call().then(result => {
+      userDucks= result;
+      return result;
+    })
+  },
+  // buyDucks: function () {
+  //   return contractInstance.methods.buyContract(,userAccount).call().then(result => {
+  //     userDucks= result;
+  //     return result;
+  //   })
+  // },
+ 
+  getMyDuck:function(){
+    return contractInstance.methods.getMyTokens().call().then(result => {
+      myDuck = result;
+      return result;
+    })
+  },
   hasAccount: function () {
     return !!userAccount;
   },
 
-  getTokens: function () {
-    return tokens;
-  },
+
 
   getUserAccount: function () {
     return userAccount;
@@ -100,6 +131,7 @@ export default {
 
   getBlock: function (id) {
     return localWeb3.eth.getBlock(id);
-  }
+  },
+ 
 
 }

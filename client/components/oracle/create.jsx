@@ -3,75 +3,30 @@ import styled from 'styled-components';
 import FontAwesome from 'react-fontawesome';
 import axios from 'axios';
 import Heading from 'arui-feather/heading';
-import Editor from '../elements/Editor';
 import Btn from '../elements/btn';
 import Web3 from 'web3';
 import wallet from '../../models/wallet';
 
 export default class Oracule extends Component {
   state = {
-    id: null,
-    title: '',
-    description: '',
-    email: '',
-    done: false,
-    address:wallet.getAddr
+    userAccount:''
   };
-ComponentDidMount(){
-  localWeb3 = new Web3(web3.currentProvider);
-  console.log(web3.eth.defaultAccount);
-}
-  onTitleChange = e => {
-    this.setState({ title: e.target.value });
-  };
+  componentDidMount() {
+     
 
-  onEmailChange = e => {
-    this.setState({ email: e.target.value });
-  };
+  }
+ 
 
-  onEditChange = description => {
-    this.setState({ description });
-  };
-
-  onSubmit = () => {
-    const { title, description, email } = this.state;
-
-    axios
-      .post('/api/oracle', {
-        title,
-        description,
-        email
-      })
-      .then(res => {
-        this.setState(
-          state => ({
-            ...state,
-            ...res.data,
-            done: true
-          }),
-          () => {
-            wallet.send(1);
-          }
-        );
-      });
-  };
 
   render() {
-    if (this.state.done) {
-      return (
-        <Content>
-          <Title>Added pull oracles with id: {this.state.id}</Title>
-        </Content>
-      );
-    }
+  
 
     return (
       <Content>
-        <Title>Register user</Title>
-          <Heading>Your address:{this.state.address} </Heading>
-        <Input onChange={this.onEmailChange} placeholder="Email" />
+        <Title>Buy duck</Title>
+          <Heading>Your address:{this.state.userAccount} </Heading>
         <div>
-          <Btn title={'Create'} onClick={this.onSubmit} />
+          <Btn title={'Buy duck'} onClick={this.onSubmit} />
         </div>
       </Content>
     );

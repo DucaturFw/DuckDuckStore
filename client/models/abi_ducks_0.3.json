@@ -235,6 +235,20 @@
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [],
+		"name": "getMyTokens",
+		"outputs": [
+			{
+				"name": "conracts",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [
 			{
@@ -245,8 +259,16 @@
 		"name": "getContractById",
 		"outputs": [
 			{
-				"name": "id",
-				"type": "uint32"
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"name": "ExpirationDate",
+				"type": "uint256"
+			},
+			{
+				"name": "minerAdr",
+				"type": "address"
 			}
 		],
 		"payable": false,
@@ -487,27 +509,12 @@
 			},
 			{
 				"indexed": false,
-				"name": "idBetting",
-				"type": "uint32"
-			},
-			{
-				"indexed": false,
 				"name": "idToken",
 				"type": "uint32"
 			},
 			{
 				"indexed": false,
-				"name": "betType",
-				"type": "uint8"
-			},
-			{
-				"indexed": false,
-				"name": "betVal",
-				"type": "uint32"
-			},
-			{
-				"indexed": false,
-				"name": "amount",
+				"name": "date",
 				"type": "uint256"
 			}
 		],

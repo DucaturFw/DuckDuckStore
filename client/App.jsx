@@ -7,21 +7,27 @@ import './styles/styles.css';
 import Main from './components/elements/Main';
 import Header from './components/header';
 import Ledger from './components/ledger';
-import Oracle from './components/oracle';
 import Footer from './components/footer';
-import Buy from './components/oracle/buy';
 import wallet from '../client/models/wallet';
-
+import Create from './components/oracle/create';
 export default class App extends Component {
+  state ={
+    userAccount:'',
+    allDucks:'',
+  }
   componentDidMount() {
     wallet.init().then(data => {
-      let status = wallet.getStatus();
-      console.log(status);
+      console.log(data);
+
       console.log(wallet.getUserAccount());
+
+      this.setState({userAccount:wallet.getUserAccount()});
+      // wallet.getMyDuck().then(res=> console.log(res));
     });
   }
 
   render() {
+    const {userAccount} =this.props;
     return (
 
       <ThemeProvider theme={theme}>
@@ -31,10 +37,8 @@ export default class App extends Component {
             <Main>
 
               <Route exact path={'/'} component={Ledger} />
-
               <Switch>
-                <Route path={'/patent/:id/buy'} component={Buy} />
-                <Route path={'/patent/:id'} component={Oracle} />
+                <Route path={'/duck/buy'} component={Create} />
 
               </Switch>
             </Main>
