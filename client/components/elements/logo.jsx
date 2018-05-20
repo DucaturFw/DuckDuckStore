@@ -5,6 +5,6 @@ const color_default = "#52CBFF";
 
 export default ({ color = color_default, opacity = opacity_default }) => {
     return (
-        <img width="120px" height="80px" src={logo} />
+        <img height="60px" src={logo} />
     );
 }

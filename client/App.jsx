@@ -12,21 +12,18 @@ import Footer from './components/footer';
 import Buy from './components/oracle/buy';
 import wallet from '../client/models/wallet';
 
-
 export default class App extends Component {
-  componentDidMount(){
+  componentDidMount() {
     wallet.init().then(data => {
       let status = wallet.getStatus();
-     console.log(status);
-     console.log( wallet.getUserAccount());
+      console.log(status);
+      console.log(wallet.getUserAccount());
     });
-
-
- 
   }
+
   render() {
     return (
-      
+
       <ThemeProvider theme={theme}>
         <Router>
           <Container>
@@ -34,7 +31,7 @@ export default class App extends Component {
             <Main>
 
               <Route exact path={'/'} component={Ledger} />
-            
+
               <Switch>
                 <Route path={'/patent/:id/buy'} component={Buy} />
                 <Route path={'/patent/:id'} component={Oracle} />
@@ -44,7 +41,7 @@ export default class App extends Component {
           </Container>
         </Router>
       </ThemeProvider>
-     
+
     );
   }
 }

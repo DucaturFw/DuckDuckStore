@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 const abi = require('./abi_ducks_0.json');
 
-const contractAddress ='0x8f9a7cf07a3ccff0a954ec92cbc2f61059f7d5ed';
+const contractAddress = '0x8f9a7cf07a3ccff0a954ec92cbc2f61059f7d5ed';
 const SUCCESS_STATUS = 'success';
 const LOGIN_STATUS = 'login';
 const MISS_STATUS = 'miss';
@@ -11,25 +11,16 @@ const BAD_NETWORK_STATUS = 'bad_newtwork';
 let localWeb3,
   contractInstance,
   userAccount,
-  accountInterval,
-  status,
-  cb;
+  status;
 
-let stat,
-  currRate,
-  total,
-  tokens,
-  betting,
-  prices;
 
 export default {
   init: function () {
     return this.getNetwork().then(() => {
-     contractInstance = new localWeb3.eth.Contract(abi, contractAddress);
+      contractInstance = new localWeb3.eth.Contract(abi, contractAddress);
       console.log("Contract methods: ", contractInstance.methods);
       // console.log("Contract events: ", contractInstance.events);
 
-      // accountInterval = setInterval(this.updateAccount.bind(this), 100);
       return this.updateAccount();
     })
   },
@@ -73,18 +64,16 @@ export default {
     });
   },
 
- 
-
   updateAccount: function () {
 
     if (status == LOGIN_STATUS && web3.eth.defaultAccount !== userAccount) {
-  
+
       userAccount = web3.eth.defaultAccount;
       status = SUCCESS_STATUS;
 
-   //   return this.getData();
-    } 
-   // else {
+      //   return this.getData();
+    }
+    // else {
     //   return this.getData();
     // }
   },
@@ -92,10 +81,6 @@ export default {
   hasAccount: function () {
     return !!userAccount;
   },
-
-
-
-
 
   getTokens: function () {
     return tokens;
