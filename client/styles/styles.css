@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "ClearSans Regular";
+  src: local("ClearSans Regular");
+  src: url("/fonts/ClearSans-Regular.eot"), url("/fonts/ClearSans-Regular.eot?#iefix") format("embedded-opentype"), url("/fonts/ClearSans-Regular.woff") format("woff"), url("/fonts/ClearSans-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: "ClearSans Regular";
+  src: local("ClearSans Bold");
+  src: url("/fonts/ClearSans-Bold.eot"), url("/fonts/ClearSans-Bold.eot?#iefix") format("embedded-opentype"), url("/fonts/ClearSans-Bold.woff") format("woff"), url("/fonts/ClearSans-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: bold;
+}
+@font-face {
+  font-family: "ClearSans Bold";
+  src: local("ClearSans Bold");
+  src: url("/fonts/ClearSans-Bold.eot"), url("/fonts/ClearSans-Bold.eot?#iefix") format("embedded-opentype"), url("/fonts/ClearSans-Bold.woff") format("woff"), url("/fonts/ClearSans-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+
+html {
+    font-size: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 200;
+}
+
+#root {
+    height: 100%;
+}
+
+p.TitAbs, p.TitCla, p.StartIzv {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* div#mainDoc p.StartIzv {text-indent: 0; padding: 8mm 0 5mm 0; text-align: center;}
+.NoBold {font-weight: normal;}
+.TGFaxPage {font-weight: bold; text-align: left; vertical-align: top;}
+table#delo {border-width: 0; margin: 0; background-color: white; padding: 0; width: 100%; border-style: none; border-spacing:0; border-collapse:collapse;}
+table#delo tr {border: 0px none white;}
+table#delo td {border-top: 1px solid black; border-bottom: 1px solid black; font-size: 12pt; padding: 2mm 2mm 2mm 2mm; line-height: 130%; vertical-align: top;}
+table#delo td.delotd {border-left: 1px solid black;}					
+table#delo th {border-top: 1px solid black; border-bottom: 1px solid black; font-size: 12pt; padding: 2mm 2mm 2mm 2mm; line-height: 130%; vertical-align: top;}
+table#delo th.delotd {border-left: 1px solid black;} */
+
+@-webkit-keyframes oracleCardIn {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(2.4rem);
+      transform: translateY(2.4rem);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+  }
+  @keyframes oracleCardIn {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(2.4rem);
+      transform: translateY(2.4rem);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+  }
