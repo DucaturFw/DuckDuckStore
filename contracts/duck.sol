@@ -235,48 +235,6 @@ contract Functional
 
 contract Ducks is ERC721, Functional, Owned
 {
-	uint256 public feeBetting;
-	
-	/*
-	enum Status {
-		NOTFOUND,		//0 game not created
-		PLAYING,		//1 buying tickets
-		PROCESSING,		//2 waiting for result
-		PAYING,	 		//3 redeeming
-		CANCELING		//4 canceling the game
-	}
-
-	
-	struct Game {
-		//string  nameBetting;
-		uint32  countCombinations;
-		uint32  dateStopBuy;
-		uint32  minStake;				// per finney = 0.001E
-		//uint32  winCombination;
-		uint256 rate;                 // win val delivered by orcale
-		uint256 betsSumIn;				// amount bets
-		uint256 feeValue;				// amount fee
-		//Status status;					// status of game
-		uint256 startTokenId;
-		bool isFreezing;
-	}
-	Game[] private game;
-
-		
-	uint256 public curRate = 0 ;
-	*/
-		
-	struct Stake {
-		uint256 sum;		// amount bets
-		uint32 count;		// count bets 
-	}
-	
-	
-	mapping(uint32 => mapping (uint32 => Stake)) public betsAll; // ID-Betting => combination => Stake
-	mapping(bytes32 => uint32) private queryRes;  // ID-query => ID-Betting
-	
-	//uint256 public ORACLIZE_GAS_LIMIT = 200000;
-	//uint256 public ORACLIZE_GASPRICE_GWEY = 40; // 40Gwey
 	
     address constant public oracleAddress = 0x1979C2A9D21F9f8FFB73F0a81CE9823c4F306eaF;
 
@@ -354,7 +312,7 @@ contract Ducks is ERC721, Functional, Owned
         
     }
     
-    function getActiveContracts() returns ( //active contracts (all)
+    function getActiveContracts() view returns ( //active contracts (all)
         string conracts 
     ){
         for (uint256 i = totalSupply-1; i >= 0; i--)
