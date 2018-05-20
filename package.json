@@ -49,6 +49,7 @@
     "inert": "^5.1.0",
     "keccak": "^1.4.0",
     "lodash": "^4.17.10",
+    "mobile-detect": "^1.4.1",
     "nunjucks": "^3.1.2",
     "object-assign": "^4.1.1",
     "pg-promise": "^8.2.2",

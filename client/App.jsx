@@ -10,6 +10,7 @@ import Ledger from './components/ledger';
 import Footer from './components/footer';
 import wallet from '../client/models/wallet';
 import Create from './components/oracle/create';
+import Success from './components/success/success';
 export default class App extends Component {
   state ={
     userAccount:'',
@@ -17,11 +18,18 @@ export default class App extends Component {
 
   }
   componentDidMount() {
-    wallet.init().then(data => {
-      console.log(data);
+    if(typeof web3 == 'undefined'){
+    console.log("not web3");
+  }
+ else {
+  wallet.init().then(data => {
+    console.log(data);
 this.setState({allDucks:data.ducks});
 this.setState({userAccount:wallet.getUserAccount()});
-    });
+  });
+  }
+  
+      
   }
 
   render() {
@@ -35,9 +43,10 @@ this.setState({userAccount:wallet.getUserAccount()});
             <Main>
 
             <Route exact path={'/'} component={Ledger}  />
+            <Route path={'/duck/success'} component ={Success} />
               <Switch>
                 <Route path={'/duck/buy'} component={Create} />
-
+                
               </Switch>
             </Main>
           </Container>

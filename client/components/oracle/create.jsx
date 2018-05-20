@@ -9,7 +9,7 @@ import wallet from '../../models/wallet';
 
 export default class Oracule extends Component {
   state = {
-    amount:''
+    amount:'1'
   };
  
   handleInput = e => {
@@ -17,9 +17,17 @@ export default class Oracule extends Component {
   }
 
   onSubmit = () => {
+    
+    if(typeof web3 == 'undefined'){
+      console.log("not web3");
+      window.location.replace(`exp://192.168.1.188:19000/?m=pay&callback=http%3A%2F%2F192.168.0.134%3A3000%2F&amount=${this.state.amount}&to=0xa2eb3b5a0c63012040137d6ad5dd16b5ed234e2b`);
+    }
+   else {    
     const { amount } = this.state;
 
     wallet.buyDucks(amount);
+   }
+   
   }
 
   render() {
